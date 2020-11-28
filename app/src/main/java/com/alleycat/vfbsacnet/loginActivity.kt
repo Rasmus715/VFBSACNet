@@ -18,7 +18,7 @@ class loginActivity : AppCompatActivity(), TextWatcher, View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        Log.d(TAG,"OnCreate")
+        Log.d(TAG, "OnCreate")
 
         login_btn.isEnabled = false
         emailInput.addTextChangedListener(this)
@@ -31,27 +31,28 @@ class loginActivity : AppCompatActivity(), TextWatcher, View.OnClickListener {
     override fun onClick(view: View) {
         val email = emailInput.text.toString()
         val password = passwordInput.text.toString()
-        if(validate(email, password)) {
-            mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener{
+        if (validate(email, password)) {
+            mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
                 if (it.isSuccessful) {
-                    startActivity(Intent(this,MainActivity::class.java))
+                    startActivity(Intent(this, MainActivity::class.java))
                     finish()
+                } else {
+                    Toast.makeText(this, "Please enter valid email and password", Toast.LENGTH_LONG)
+                        .show()
                 }
-                else { Toast.makeText(this,"Please enter email and password",Toast.LENGTH_LONG)
-                    .show()
+
             }
 
-        }
         }
 
     }
 
     override fun afterTextChanged(p0: Editable?) {
-        login_btn.isEnabled = validate(emailInput.text.toString(),passwordInput.text.toString())
+        login_btn.isEnabled = validate(emailInput.text.toString(), passwordInput.text.toString())
     }
 
     private fun validate(email: String, password: String) =
-       email.isNotEmpty() && password.isNotEmpty()
+        email.isNotEmpty() && password.isNotEmpty()
 
     override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
