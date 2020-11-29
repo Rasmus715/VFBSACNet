@@ -1,13 +1,13 @@
 package com.alleycat.vfbsacnet
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
-import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -37,8 +37,15 @@ class loginActivity : AppCompatActivity(), TextWatcher, View.OnClickListener {
                     startActivity(Intent(this, MainActivity::class.java))
                     finish()
                 } else {
-                    Toast.makeText(this, "Please enter valid email and password", Toast.LENGTH_LONG)
-                        .show()
+
+                    val loginErrorAlert = AlertDialog.Builder(this)
+                    loginErrorAlert.setTitle("Error")
+                    loginErrorAlert.setMessage("Please enter valid email and password")
+                    loginErrorAlert.setPositiveButton("OK", null)
+                    loginErrorAlert.show()
+                    //old code
+                    //Toast.makeText(this, "Please enter valid email and password", Toast.LENGTH_LONG)
+                        //.show()
                 }
 
             }

@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance()
         if (mAuth.currentUser == null)
             startActivity(Intent(this, loginActivity::class.java))
+
         //looks creepy, will fix someday
         else {
             setContentView(R.layout.activity_main)

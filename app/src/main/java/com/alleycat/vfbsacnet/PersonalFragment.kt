@@ -13,10 +13,12 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_personal.*
 
 private val TAG = "PersonalFragment"
 private lateinit var mAuth: FirebaseAuth
+private lateinit var mUser: User
 
 class PersonalFragment : Fragment() {
     override fun onCreateView(
@@ -36,6 +38,9 @@ class PersonalFragment : Fragment() {
 
         //signOut_text.setOnClickListener { Log.d(TAG, "onViewCreated()"); }
 
+
+
+        //old code
         val user = mAuth.currentUser
         val database = FirebaseDatabase.getInstance().reference
         database.child("users").child(user!!.uid)

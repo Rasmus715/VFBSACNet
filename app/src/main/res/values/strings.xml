@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">VFBSACNet</string>
+        <string name="dialogError">Ошибка!</string>
+        <string name="dialogLoginErrorMessage">Пожалуйста, введите действительные логин и пароль.</string>
 </resources>
